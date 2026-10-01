@@ -5,6 +5,16 @@
 > Built as a DevOps class project, with a full Flutter + FastAPI + cloud-native pipeline behind it.
 
 ---
+PREVIEW:
+<p align="center">
+  <img src="images/img1.png" width="80%" alt="Home screen" /></p>
+<p align="center">
+  <img src="images/img2.png" width="80%" alt="Wardrobe screen" /></p>
+<p align="center">
+  <img src="images/img3.png" width="80%" alt="Add item screen" />
+</p>
+
+---
 
 ## ✨ Why Outfitz (and not just ChatGPT)
 
@@ -100,12 +110,3 @@ uvicorn main:app --reload
 - [ ] CI/CD pipeline (GitHub Actions → Docker → AWS via Terraform)
 - [ ] Deploy to production
 
----
-PREVIEW:
-<p align="center">
-  <img src="images/img1.png" width="80%" alt="Home screen" /></p>
-<p align="center">
-  <img src="images/img2.png" width="80%" alt="Wardrobe screen" /></p>
-<p align="center">
-  <img src="images/img3.png" width="80%" alt="Add item screen" />
-</p>
