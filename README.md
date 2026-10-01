@@ -101,10 +101,10 @@ uvicorn main:app --reload
 - [ ] Deploy to production
 
 ---
-## PREVIEW:
----
-
+PREVIEW:
 <p align="center">
-  <img src="images/img1.png" width="30%" alt="Home screen" /></p>
+  <img src="images/img1.png" width="30%" alt="Home screen" />
   <img src="images/img2.png" width="30%" alt="Wardrobe screen" />
   <img src="images/img3.png" width="30%" alt="Add item screen" />
+</p>
+---
