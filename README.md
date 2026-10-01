@@ -103,8 +103,9 @@ uvicorn main:app --reload
 ---
 PREVIEW:
 <p align="center">
-  <img src="images/img1.png" width="30%" alt="Home screen" />
-  <img src="images/img2.png" width="30%" alt="Wardrobe screen" />
-  <img src="images/img3.png" width="30%" alt="Add item screen" />
+  <img src="images/img1.png" width="80%" alt="Home screen" /></p>
+<p align="center">
+  <img src="images/img2.png" width="80%" alt="Wardrobe screen" /></p>
+<p align="center">
+  <img src="images/img3.png" width="80%" alt="Add item screen" />
 </p>
----
