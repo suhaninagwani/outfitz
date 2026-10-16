@@ -30,9 +30,17 @@ void main() {
   testWidgets('splash', (tester) async {
     usePhoneViewport(tester);
     await mountApp(tester, onboarded: true);
-    // Catch the sequence just after the sticker has landed and the wordmark has
-    // arrived, while the rule is still drawing.
+    // Catch the sequence after the sticker has landed and the wordmark and the
+    // quote have arrived.
     await tester.pump(const Duration(milliseconds: 1500));
+
+    // Touch it twice, so the capture shows what the screen does under a finger:
+    // butter and ivory blooms scattering from each point.
+    await tester.tapAt(const Offset(118, 296));
+    await tester.pump(const Duration(milliseconds: 120));
+    await tester.tapAt(const Offset(312, 648));
+    await tester.pump(const Duration(milliseconds: 430));
+
     await capture(tester, '00-splash.png');
   });
 
@@ -89,8 +97,14 @@ void main() {
   });
 }
 
+/// Swipes the cover away the way a thumb would.
+///
+/// The cover has no timeout — it waits — so every capture past it has to push it
+/// off. Nothing here may use `pumpAndSettle` while it is still up: the seal and
+/// the figure keep breathing, so the frame queue is never empty.
 Future<void> settlePastSplash(WidgetTester tester) async {
-  await tester.pump(SplashPage.hold + const Duration(milliseconds: 600));
+  await tester.pump(const Duration(milliseconds: 1500));
+  await tester.drag(find.byType(SplashPage), const Offset(-260, 0));
   await tester.pumpAndSettle();
 }
 

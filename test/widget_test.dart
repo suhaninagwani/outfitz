@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:outfitz/app.dart';
 import 'package:outfitz/core/providers.dart';
 import 'package:outfitz/features/outfits/data/outfit_engine.dart';
+import 'package:outfitz/features/splash/presentation/splash_page.dart';
 import 'package:outfitz/features/wardrobe/data/seed_wardrobe.dart';
 import 'package:outfitz/features/wardrobe/data/wardrobe_repository.dart';
 import 'package:outfitz/features/wardrobe/domain/wardrobe_item.dart';
@@ -65,7 +66,7 @@ void main() {
     });
   });
 
-  testWidgets('boots through the splash screen', (tester) async {
+  testWidgets('waits on the cover until it is swiped left', (tester) async {
     SharedPreferences.setMockInitialValues({});
     final prefs = await SharedPreferences.getInstance();
     final wardrobe = await WardrobeRepository.open(prefs);
@@ -83,7 +84,14 @@ void main() {
     expect(find.byType(MaterialApp), findsOneWidget);
     expect(find.text('Outfitz'), findsWidgets);
 
-    await tester.pump(const Duration(seconds: 2));
+    // It does not time out — however long you leave it, it is still there.
+    await tester.pump(const Duration(seconds: 8));
+    expect(find.byType(SplashPage), findsOneWidget);
+
+    await tester.drag(find.byType(SplashPage), const Offset(-240, 0));
     await tester.pumpAndSettle();
+
+    expect(find.byType(SplashPage), findsNothing);
+    expect(find.byType(MaterialApp), findsOneWidget);
   });
 }

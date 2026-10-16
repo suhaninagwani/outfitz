@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart';
@@ -91,21 +90,6 @@ class RootGate extends ConsumerStatefulWidget {
 
 class _RootGateState extends ConsumerState<RootGate> {
   bool _splashDone = false;
-  Timer? _timer;
-
-  @override
-  void initState() {
-    super.initState();
-    _timer = Timer(SplashPage.hold, () {
-      if (mounted) setState(() => _splashDone = true);
-    });
-  }
-
-  @override
-  void dispose() {
-    _timer?.cancel();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -114,7 +98,11 @@ class _RootGateState extends ConsumerState<RootGate> {
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 420),
       child: !_splashDone
-          ? const SplashPage(key: ValueKey('splash'))
+          // The cover waits. It leaves when it is swiped left, and only then.
+          ? SplashPage(
+              key: const ValueKey('splash'),
+              onEnter: () => setState(() => _splashDone = true),
+            )
           : seen
               ? const Shell(key: ValueKey('shell'))
               : const OnboardingPage(key: ValueKey('onboarding')),
