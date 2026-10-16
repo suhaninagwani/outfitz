@@ -12,6 +12,23 @@ filtered by the forecast, coloured by your mood.
 
 ---
 
+## Screens
+
+<p align="center">
+  <img src="images/01-onboarding.png" width="250" alt="Onboarding" />
+  <img src="images/02-home.png" width="250" alt="Home" />
+  <img src="images/03-wardrobe.png" width="250" alt="Wardrobe" />
+</p>
+<p align="center">
+  <img src="images/04-insights.png" width="250" alt="Insights" />
+  <img src="images/05-planner.png" width="250" alt="Planner" />
+</p>
+
+<sub>Rendered from the real app by `test/screenshots.dart`. Regenerate with
+`flutter test test/screenshots.dart --update-goldens`.</sub>
+
+---
+
 ## Why Outfitz (and not just a ChatGPT wrapper)
 
 Most "AI outfit" ideas are a text prompt in a trench coat — describe your clothes
