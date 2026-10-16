@@ -96,7 +96,7 @@ class _RootGateState extends ConsumerState<RootGate> {
   @override
   void initState() {
     super.initState();
-    _timer = Timer(const Duration(milliseconds: 1600), () {
+    _timer = Timer(SplashPage.hold, () {
       if (mounted) setState(() => _splashDone = true);
     });
   }

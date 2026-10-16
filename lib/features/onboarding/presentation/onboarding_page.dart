@@ -193,7 +193,7 @@ class _WardrobeArt extends StatelessWidget {
   Widget build(BuildContext context) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const LabelledRule('the palette'),
+          const LabelledRule('the house palette'),
           const SizedBox(height: 14),
           const PaletteStrip(height: 40),
           const SizedBox(height: 20),

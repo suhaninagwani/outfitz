@@ -73,15 +73,16 @@ class HomePage extends ConsumerWidget {
           const SizedBox(height: 30),
 
           LabelledRule(
-            'in your palette',
+            'your palette',
             trailing: MicroLabel('${breakdown.length} shades', spacing: 1.4),
           ),
           const SizedBox(height: 14),
-          const PaletteStrip(),
-          const SizedBox(height: 10),
+          WardrobePaletteStrip(breakdown: breakdown),
+          const SizedBox(height: 12),
           Text(
-            'Sixty per cent neutrals, thirty per cent wine and maroon, ten per cent '
-            'butter. Everything you add gets pulled toward this palette.',
+            'Counted from the pieces you own, so this is your mix — not a '
+            'template. The app\'s own palette (wine, maroon, black, ivory, '
+            'butter) stays behind the interface.',
             style: AppText.bodyMuted,
           ),
           const SizedBox(height: 30),

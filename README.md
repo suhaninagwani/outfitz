@@ -15,12 +15,16 @@ filtered by the forecast, coloured by your mood.
 ## Screens
 
 <p align="center">
+  <img src="images/00-splash.png" width="250" alt="Animated splash" />
   <img src="images/01-onboarding.png" width="250" alt="Onboarding" />
   <img src="images/02-home.png" width="250" alt="Home" />
-  <img src="images/03-wardrobe.png" width="250" alt="Wardrobe" />
 </p>
 <p align="center">
+  <img src="images/06-home-palette.png" width="250" alt="Your palette, counted from your wardrobe" />
+  <img src="images/03-wardrobe.png" width="250" alt="Wardrobe" />
   <img src="images/04-insights.png" width="250" alt="Insights" />
+</p>
+<p align="center">
   <img src="images/05-planner.png" width="250" alt="Planner" />
 </p>
 
@@ -64,8 +68,20 @@ network dependency and no runtime font fetching.
 highlight. Nothing outside the palette. Warm paper background `#F7F3EC`, hairline
 rules `#E3DACA`, pill controls, generously rounded panels.
 
-Every colour the camera detects is snapped to this palette, which is why detected
-colours always look intentional rather than random.
+Every colour the camera detects is snapped to the 12-shade **wardrobe palette**
+(which carries denim, cream, camel and chocolate alongside the house colours), so
+detected colours always look intentional rather than random.
+
+**The sticker.** `assets/stickers/outfitz-seal.png` — the butter die-cut seal that
+lands on the splash. It is drawn in code (`lib/core/widgets/brand_seal.dart`) and
+rendered to that PNG once, so the asset is a real file you can print, post or
+replace. Regenerate it with `flutter test test/stickers.dart --update-goldens`.
+
+**Two palettes, kept apart.** The five house colours above are what the
+*interface* is built from, and they are labelled as the house palette on
+onboarding. Home shows the colours of the *clothes* instead, counted from your
+wardrobe — so a denim jacket reads as denim rather than being quietly rounded
+into wine and black.
 
 ---
 
@@ -75,8 +91,9 @@ Everything below is real and working on a phone or in a browser:
 
 | Screen | What it does |
 |---|---|
-| **Splash & onboarding** | 3-slide intro (wardrobe → scan → mood), shown once, replayable |
-| **Home** | Live-mock weather panel, single-select **mood** picker, today's outfit with match score, "why this?" reasoning, your palette strip |
+| **Animated splash** | Wine screen, ivory wordmark, and the butter sticker landing above it — then a slow idle tilt. The sticker is a real PNG in `assets/stickers/` |
+| **Onboarding** | 3-slide intro (wardrobe → scan → mood), shown once, replayable |
+| **Home** | Live-mock weather panel, single-select **mood** picker, today's outfit with match score, "why this?" reasoning, and **your palette counted from your own wardrobe** |
 | **Wardrobe** | Category rail with per-category counts, 2-column grid, name/colour search, empty states per category |
 | **Add a piece** | Camera **or** gallery → **real crop UI** (drag, resize, rule-of-thirds guide) → auto-detected tags → confirm |
 | **Confirm tags** | Simulated analysis pass, then category / 12-swatch colour / warmth range / mood tags / name — all user-editable. Saves a real image to device storage |

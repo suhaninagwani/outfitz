@@ -263,3 +263,78 @@ class PaletteStrip extends StatelessWidget {
     return '';
   }
 }
+
+/// The colours the wardrobe actually holds, drawn to scale.
+///
+/// Home shows this rather than the five brand swatches: the strip is about the
+/// clothes on the rail. [PaletteStrip] above is the *house* palette — the kit
+/// the interface itself is built from — and belongs on brand screens, not on a
+/// screen that is counting someone's shirts.
+class WardrobePaletteStrip extends StatelessWidget {
+  const WardrobePaletteStrip({
+    required this.breakdown,
+    this.height = 46,
+    this.maxSwatches = 6,
+    super.key,
+  });
+
+  /// Colour and how many pieces wear it, most common first.
+  final List<(WardrobeColour, int)> breakdown;
+  final double height;
+  final int maxSwatches;
+
+  @override
+  Widget build(BuildContext context) {
+    if (breakdown.isEmpty) {
+      return const MicroLabel('nothing counted yet', spacing: 1.6);
+    }
+
+    final shown = breakdown.take(maxSwatches).toList();
+    final rest = breakdown.length - shown.length;
+    final total = breakdown.fold<int>(0, (sum, entry) => sum + entry.$2);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Row(
+            children: [
+              for (final (colour, count) in shown)
+                Expanded(
+                  flex: count,
+                  child: Container(height: height, color: colour.color),
+                ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 12),
+        Wrap(
+          spacing: 16,
+          runSpacing: 8,
+          children: [
+            for (final (colour, count) in shown)
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    width: 9,
+                    height: 9,
+                    decoration: BoxDecoration(
+                      color: colour.color,
+                      shape: BoxShape.circle,
+                      border: Border.all(color: AppColors.line),
+                    ),
+                  ),
+                  const SizedBox(width: 6),
+                  MicroLabel('${colour.name} · $count', spacing: 1.4, size: 9),
+                ],
+              ),
+            if (rest > 0)
+              MicroLabel('+$rest more · $total pieces', spacing: 1.4, size: 9),
+          ],
+        ),
+      ],
+    );
+  }
+}
